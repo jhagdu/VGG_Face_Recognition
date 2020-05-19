@@ -32,7 +32,6 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 model.summary()
 
 
-
 trainDataGen = ImageDataGenerator(rescale = 1./255, zoom_range = 0.2, shear_range = 0.2, horizontal_flip = True)
 testDataGen = ImageDataGenerator(rescale = 1./255)
 
@@ -41,13 +40,8 @@ trainingSet = trainDataGen.flow_from_directory('dataset/training_set/', target_s
 testSet = testDataGen.flow_from_directory('dataset/testing_set/', target_size = (224, 224))
 
 
-# In[ ]:
-
-
 r = model.fit_generator(steps_per_epoch=100, epochs=5, validation_steps=10,
                         generator=trainingSet,validation_data=testSet,)
-
-
 
 
 model.save('face_rec_VGG_TL.h5')
